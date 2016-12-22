@@ -1,0 +1,8 @@
+<%# add navigation links to this file %>
+<% if user_signed_in? %>
+  <li><%= link_to '<i class="fa fa-user fa-fw"></i> Profile Saya'.html_safe, edit_user_registration_path %></li>
+  <li><%= link_to '<i class="fa fa-ban fa-fw"></i> Sign Out'.html_safe, destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+  <li><%= link_to '<i class="fa fa-user fa-fw"></i> Login'.html_safe, new_user_session_path %></li>
+  <li><%= link_to '<i class="fa fa-share fa-fw"></i> Pendaftaran'.html_safe, new_user_registration_path %></li>
+<% end %>

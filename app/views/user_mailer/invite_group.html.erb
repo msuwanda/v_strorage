@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>hallo <%= @user %> </h1>
+    <p>
+      kamu dapat undangan dari <%= @usersend %> untuk bergabung ke grup <br>
+      <a href="http://localhost:3000/groups/<%= @url %>"> http://localhost:3000/groups/<%= @url %> </a><br>
+    </p>
+    <p>
+      jika anda belum mempunyai akun <a href="http://localhost:3000/user/sigh_up"> http://localhost:3000/user/sigh_up </a>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

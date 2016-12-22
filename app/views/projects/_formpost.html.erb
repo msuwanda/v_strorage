@@ -1,0 +1,19 @@
+<%= form_for(@post_project, :html => {:class => "form"}) do |f| %>
+<div class="row">
+  <div class="col-md-12">
+    
+    <%= f.hidden_field :project_id , :value => @project.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <%= f.hidden_field :activity, :value => "create post project" %>
+
+    <%= f.label :content, :class => "col-md-12 control-label" %><br>
+    <div class="col-md-10">
+      <%= f.text_area :content, :class => "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit :post , :value => "Kirim" ,:class => "btn btn-success" %>
+    </div>
+  </div>
+</div>
+<% end %>

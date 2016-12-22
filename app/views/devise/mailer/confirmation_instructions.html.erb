@@ -1,0 +1,5 @@
+<p>Selamat datang <%= @email %>!</p>
+
+<p>Anda dapat mengkonfirmasi email account Anda melalui link di bawah ini:</p>
+
+<p><%= link_to 'Konfirmasi akun saya', user_confirmation_url( confirmation_token: @token) %></p>

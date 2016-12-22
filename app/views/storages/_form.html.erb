@@ -1,0 +1,73 @@
+<%= form_for @storage , :url => storages_path , :html => { :multipart => true, :class => "form-horizontal" } do |f| %>
+
+  <% if @storage.errors.any? %>
+
+    <div id="error_explanation">
+
+      <h2><%= pluralize(@storage.errors.count, "error") %> prohibited this storage from being saved:</h2>
+
+      <ul>
+
+      <% @storage.errors.full_messages.each do |message| %>
+
+        <li><%= message %></li>
+
+      <% end %>
+
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <div class="form-group">
+    <% 
+    
+    @sum = 0 
+
+    @storages.each do |storage| 
+
+      @sum = @sum + storage.file_file_size 
+
+    end 
+    
+    time = Time.now  
+    
+    @ec = Digest::MD5.hexdigest(time.to_formatted_s(:number))
+    @sumdif = current_user.quota
+    @kol = @sumdif.to_f - @sum 
+        
+    %>
+    <%= f.label :file , :class => "col-sm-1 control-label" %>
+
+    <div class="col-sm-4">
+
+      <%= f.file_field :file, :class => "form-control" %>
+
+      <%= f.hidden_field :share_link, :value => @ec , :class => "form-control" %>
+
+      <%= f.hidden_field :user_quota, :value => @kol , :class => "form-control" %>
+      <span class="help-block">Max upload <%= number_to_human_size(@kol) %></span>
+
+    </div>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :project_id, :value => "0", :class => "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+    
+    <div class="col-sm-offset-1 col-sm-10">
+
+      <%= link_to '<i class="fa fa-arrow-circle-o-left"></i> Kembali'.html_safe, storages_path , :class => "btn btn-primary"%>
+
+      <%= f.submit :Upload, :value => "Upload", :class => "btn btn-success" %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+

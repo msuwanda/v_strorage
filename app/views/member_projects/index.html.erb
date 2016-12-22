@@ -1,0 +1,15 @@
+<h1 class="heading-page">Listing member <small><%= @project.name %></small></h1>
+
+<hr class="page-hr">
+
+    <% @member_projects.each do |member_project| %>
+    <div class="col-md-3">
+      <div class="col-md-3">  
+        <%= image_tag member_project.user.avatar.url(:thumb) ,:class => "img-member" %>
+      </div>
+      <div class="col-md-9">
+        <%= link_to member_project.user.name, user_path(member_project.user_id),:class => "name-member" %>
+      </div>
+    </div>
+    <% end %>
+

@@ -1,0 +1,46 @@
+<h1 class="heading-page">Listing storages <small><%= @project.name %></small></h1>
+
+<hr class="page-hr">
+
+<div class="table-responsive">
+
+<table class="table table-striped table-hover">
+
+  <thead>
+
+    <tr>
+
+      <th>File Name</th>
+
+      <th>Size</th>
+
+      <th colspan="3"></th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <% @storages.each do |storage| %>
+
+      <tr>
+
+        <td><%= storage.file_file_name %> </td>
+
+        <td><%= number_to_human_size(storage.file_file_size) %><td>
+
+        <td>
+
+          <%= link_to '<i class="fa fa-download"></i> Download'.html_safe, storage.file.url(:original, false), :class => "btn btn-primary" %>
+
+        </td>
+
+      </tr>
+
+    <% end %>
+
+  </tbody>
+
+</table>
+</div> 

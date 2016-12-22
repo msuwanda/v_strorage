@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <h2 class="heading-page"> 
+
+  	<%= @group.name %>
+
+  	<small>
+
+  		<% if  @user_group.owner_status == 1 %>
+
+  			<%= link_to 'Edit', edit_group_path(@group.id) %>
+
+  		<% end %>
+
+  	</small>
+
+  </h2>  
+
+
+
+  	
+  	<% if @joins_user == 0 %>
+    	
+    	<%= form_tag('/user_groups') do |f| %>
+
+		    <%= hidden_field_tag :group_id, @group.id %>
+	
+		    <%= hidden_field_tag :user_id, current_user.id %>
+	
+		    <%= submit_tag :join, :value => "Gabung Ke Grup" , :class => "btn btn-success" %>
+
+		<% end %>
+
+    <% else %>
+    
+    	<%= link_to 'Keluar Dari Grup', @user_group, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%>
+    
+    <% end %>
+  
+ <hr class="page-hr">
+
+</p>
+
+<div class="panel panel-default">
+
+	<div class="panel-heading">
+
+		<h3 class="panel-title">List User Grup</h3>
+
+	</div>
+
+	<div class="panel-body">
+
+    	<% @user_groups.each do |user_group| %>
+
+			<p>
+		
+				<%= image_tag user_group.user.avatar.url(:thumb) , :class => 'thumb-list'%>
+
+				<%= user_group.user.name %>
+        	
+       			<%= link_to 'Show', user_group.user %>
+       	
+       		</p>
+
+    	<% end %>
+
+	</div>
+
+</div>
+
+<div class="panel panel-default">
+
+	<div class="panel-heading">
+
+		<h3 class="panel-title">Invite Friends</h3>
+
+	</div>
+
+	<div class="panel-body">
+		<%= form_tag('/user_groups/invite') do |f| %>
+		<div class="form-group">
+			<%= label_tag :username, "Username/email" ,:class => "col-sm-2 control-label" %>
+			<div class="col-sm-3">
+				<%= text_field_tag :email, "" ,:class => "form-control" %>
+				<%= hidden_field_tag :send, current_user.email %>
+				<%= hidden_field_tag :url, @group.id %>
+			</div>
+			<%= submit_tag :save, :value => "invite", :class => "btn btn-default" %>
+		<% end %>
+
+	</div>
+
+</div>

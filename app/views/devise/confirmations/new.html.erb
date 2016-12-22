@@ -1,0 +1,23 @@
+<h1 class="heading-page">Resend confirmation instructions</h1>
+
+<hr class="page-hr">
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name, confirmation_token: @token), html: { method: :post , :calss => "form-horizontal" }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :email, :class => "col-md-2 control-label" %>
+    <div class="col-md-5">
+    <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+  	</div>
+  </div>
+  <br>
+  <div class="form-group">
+  	<div class="col-md-offset-2 col-md-7">
+  		<br>
+    <%= f.submit "Resend confirmation instructions", :class => "btn btn-success" %><br>
+    <%= render "devise/shared/links" %>
+	</div>
+  </div>
+<% end %>
+
+

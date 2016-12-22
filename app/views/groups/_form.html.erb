@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for @group , :url => @group, :html => { :multipart => true, :class => "form-horizontal" } do |f| %>
+
+  <% if @group.errors.any? %>
+
+    <div id="error_explanation">
+
+      <h2>
+          <%= pluralize(@group.errors.count, "error") %> prohibited this group 
+        from being saved:
+
+      </h2>
+
+      <ul>
+      
+      <% @group.errors.full_messages.each do |message| %>
+      
+        <li><%= message %></li>
+      
+      <% end %>
+      
+      </ul>
+    
+    </div>
+  
+  <% end %>
+
+  <div class="form-group">
+  
+    <%= f.label :name , :class => "col-sm-1 control-label"%>
+  
+    <div class="col-md-4">
+
+        <%= f.text_field :name, :class => "form-control", :'data-validate' => '/groups/checkname' %>
+
+        <%= f.hidden_field :group_status, :value => 'nonformal' %>
+          <br>
+
+          <div id="validate-groups" class="alert alert-warning alert-dismissible hidden-div" role="alert">
+        
+          <button type="button" class="close" data-dismiss="alert">
+
+            <span aria-hidden="true">&times;</span>
+        
+            <span class="sr-only">Close</span>
+
+          </button>
+        
+          <strong>!</strong> Nama Grup Sudah Dipakai
+    
+        </div>
+    </div>
+    <div class="col-md-4">
+        <%= f.button :chek , :type => 'button' , :class => "btn btn-default"%>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+
+    <div class="col-sm-offset-1  col-sm-6">
+  
+      <%= f.submit :class => "btn btn-success" %>
+  
+    </div>
+  
+  </div>
+
+
+    
+  
+
+
+<%  end %>
+

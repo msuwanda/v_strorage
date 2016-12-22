@@ -1,0 +1,24 @@
+<%= form_for(@comment_post) do |f| %>
+  <% if @comment_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment_post.errors.count, "error") %> prohibited this comment_post from being saved:</h2>
+
+      <ul>
+      <% @comment_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.number_field :post_id, :value => @post_projects.id %>
+    <%= f.number_field :project_id , :value => @post_projects.project_id %>
+    <%= f.number_field :user_id, :value => current_user.id %>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

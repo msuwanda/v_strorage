@@ -1,0 +1,56 @@
+<%= form_tag("/projects", :method => "post" , :class => "form-horizontal") do |f| %>
+
+  <% if @project.errors.any? %>
+
+    <div id="error_explanation">
+
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+
+      <% @project.errors.full_messages.each do |message| %>
+
+        <li><%= message %></li>
+
+      <% end %>
+
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <div class="form-group">
+
+    <%= label_tag :name , "Nama Proyek / Topik", :class => "col-md-3 control-label"  %>
+    <div class="col-md-5">
+      <%= text_field_tag :name ,"", :class => 'form-control'  %>
+    </div>  
+  </div>
+
+  <div class="form-group">
+
+    <%= label_tag :Kategori , "Kategori / Hashtag", :class => "col-md-3 control-label" %>
+    <div class="col-md-5">
+      <%= text_field_tag :hashtag, params[:hashtag], id: "hashtaginput", class: 'form-control' %>
+
+
+	   <span class="help-block">(Kategori berupa 1 kata kunci untuk memudahkan pencarian. Pilih yang sudah tersedia jika ada atau tambahkan jika belum ada.)</span>
+
+
+    </div>
+  
+  </div>
+
+  <div class="form-group">
+    
+    <div class="col-sm-offset-3 col-sm-10">
+    
+      <%= submit_tag :submit , :class => "btn btn-success" %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
